@@ -1,6 +1,5 @@
-/* This is a demo sidebar. **COMPULSORY** Edit this file to customize the sidebar OR remove it from appLayout OR don't use appLayout at all */
 import React from "react";
-import { Home, Layers, Compass, Star, Settings, LifeBuoy } from "lucide-react";
+import { Globe, Search, List, Settings, LayoutDashboard, Database, Activity } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -13,60 +12,62 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMenuAction,
-  SidebarMenuBadge,
 } from "@/components/ui/sidebar";
-
+import { Link, useLocation } from "react-router-dom";
 export function AppSidebar(): JSX.Element {
+  const location = useLocation();
+  const menuItems = [
+    { title: "Page Crawler", icon: Globe, path: "/" },
+    { title: "Domain Crawler", icon: Database, path: "/domain-crawler" },
+    { title: "Task Manager", icon: List, path: "/tasks" },
+    { title: "Activity", icon: Activity, path: "/activity" },
+  ];
   return (
-    <Sidebar>
+    <Sidebar variant="sidebar" collapsible="icon">
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-1">
-          <div className="h-6 w-6 rounded-md bg-gradient-to-br from-indigo-500 to-purple-500" />
-          <span className="text-sm font-medium">Demo Sidebar</span>
+        <div className="flex items-center gap-3 px-2 py-2">
+          <div className="flex size-8 items-center justify-center rounded-lg bg-indigo-600 text-white font-bold">
+            L
+          </div>
+          <span className="text-sm font-semibold truncate">LuminaSEO</span>
         </div>
-        <SidebarInput placeholder="Search" />
+        <SidebarInput placeholder="Search project..." className="mx-1" />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
+          <SidebarGroupLabel>Analysis</SidebarGroupLabel>
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive>
-                <a href="#"><Home /> <span>Home</span></a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <a href="#"><Layers /> <span>Projects</span></a>
-              </SidebarMenuButton>
-              <SidebarMenuAction>
-                <Star className="size-4" />
-              </SidebarMenuAction>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <a href="#"><Compass /> <span>Explore</span></a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            {menuItems.map((item) => (
+              <SidebarMenuItem key={item.path}>
+                <SidebarMenuButton asChild isActive={location.pathname === item.path} tooltip={item.title}>
+                  <Link to={item.path}>
+                    <item.icon className="size-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
           </SidebarMenu>
         </SidebarGroup>
-
         <SidebarSeparator />
-
         <SidebarGroup>
-          <SidebarGroupLabel>Quick Links</SidebarGroupLabel>
+          <SidebarGroupLabel>Configuration</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <a href="#"><Star /> <span>Starred</span></a>
+              <SidebarMenuButton asChild tooltip="Settings">
+                <Link to="/settings">
+                  <Settings className="size-4" />
+                  <span>Settings</span>
+                </Link>
               </SidebarMenuButton>
-              <SidebarMenuBadge>5</SidebarMenuBadge>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <div className="px-2 text-xs text-muted-foreground">A simple shadcn sidebar</div>
+        <div className="px-3 py-4 text-xs text-muted-foreground">
+          v1.0.4-stable
+        </div>
       </SidebarFooter>
     </Sidebar>
   );
