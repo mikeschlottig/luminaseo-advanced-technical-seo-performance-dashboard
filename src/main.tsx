@@ -13,6 +13,8 @@ import { RouteErrorBoundary } from '@/components/RouteErrorBoundary';
 import '@/index.css'
 import { HomePage } from '@/pages/HomePage'
 import DomainCrawler from '@/pages/DomainCrawler'
+import TaskManager from '@/pages/TaskManager'
+import ActivityLog from '@/pages/ActivityLog'
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -23,6 +25,16 @@ const router = createBrowserRouter([
   {
     path: "/domain-crawler",
     element: <DomainCrawler />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/tasks",
+    element: <TaskManager />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/activity",
+    element: <ActivityLog />,
     errorElement: <RouteErrorBoundary />,
   },
   {
