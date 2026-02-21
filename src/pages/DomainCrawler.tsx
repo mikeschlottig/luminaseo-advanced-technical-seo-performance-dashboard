@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import {
   ResizableHandle,
@@ -12,15 +12,8 @@ import { CrawlUrl } from "@/lib/domain-mock-data";
 import { Button } from "@/components/ui/button";
 import { Play, Pause, RefreshCw, Download, Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useSEOStore } from "@/lib/store";
 export default function DomainCrawler() {
   const [selectedUrl, setSelectedUrl] = useState<CrawlUrl | undefined>();
-  const fetchTasks = useSEOStore(s => s.fetchTasks);
-  const tasks = useSEOStore(s => s.tasks);
-  const activeTask = tasks[0]; // Simplified for demo
-  useEffect(() => {
-    fetchTasks();
-  }, [fetchTasks]);
   return (
     <AppLayout container className="bg-slate-50/50 h-screen overflow-hidden" contentClassName="p-0 sm:p-0 lg:p-0 max-w-none">
       <div className="flex flex-col h-full">
@@ -38,20 +31,16 @@ export default function DomainCrawler() {
               </Button>
             </div>
             <div className="h-6 w-px bg-border mx-2" />
-            <div className="flex items-center gap-2 px-3 py-1 bg-slate-100 rounded-md">
-              <span className="text-xs font-bold text-muted-foreground uppercase">Project:</span>
-              <span className="text-xs font-semibold">{activeTask?.domain || "No Active Crawl"}</span>
-            </div>
             <div className="flex-1 max-w-md relative">
               <Filter className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
-              <Input
-                placeholder="Filter results..."
-                className="h-8 pl-8 text-xs bg-muted/50 border-none ring-0 focus-visible:ring-1"
+              <Input 
+                placeholder="Filter results..." 
+                className="h-8 pl-8 text-xs bg-muted/50 border-none ring-0 focus-visible:ring-1" 
               />
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button size="icon" variant="ghost" className="size-8" onClick={() => fetchTasks()}>
+            <Button size="icon" variant="ghost" className="size-8">
               <RefreshCw className="size-4" />
             </Button>
             <Button size="sm" variant="outline" className="h-8 gap-2">
