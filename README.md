@@ -1,6 +1,6 @@
 # Cloudflare Workers Full-Stack Chat Demo
 
-[![[cloudflarebutton]]](https://deploy.workers.cloudflare.com/?url=${repositoryUrl})
+[![[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/mikeschlottig/luminaseo-advanced-technical-seo-performance-dashboard)]](https://deploy.workers.cloudflare.com/?url=${repositoryUrl})
 
 A production-ready full-stack chat application built on Cloudflare Workers. Features a React frontend with shadcn/ui, TanStack Query, and a Hono backend powered by Durable Objects for scalable, stateful entities (Users, Chats, Messages). Supports listing, CRUD operations, pagination, and automatic seed data.
 
@@ -118,7 +118,7 @@ const createChat = useMutation({
    - Durable Objects auto-migrate via `migrations`.
 
 3. **Deploy Button**:
-   [![[cloudflarebutton]]](https://deploy.workers.cloudflare.com/?url=${repositoryUrl})
+   [![[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/mikeschlottig/luminaseo-advanced-technical-seo-performance-dashboard)]](https://deploy.workers.cloudflare.com/?url=${repositoryUrl})
 
 4. **Production URLs**:
    - Frontend: `https://<worker>.<subdomain>.workers.dev`
